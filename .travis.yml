@@ -15,11 +15,12 @@ notifications:
     on_failure: always
 script:
 - dotnet build ./Promact.OAuth.Client/src/Promact.OAuth.Client -c Release
+- cd ./Promact.OAuth.Client/src/Promact.OAuth.Client
+- ls
 deploy:
   provider: script
   skip_cleanup: true
   script:
-    - cd ./Promact.OAuth.Client/src/Promact.OAuth.Client
-    - ls
+    - cd ./Promact.OAuth.Client/src/Promact.OAuth.Client && nuget pack Promact.OAuth.Client.nuspec -IncludeReferencedProjects -Prop Configuration=Release && nuget push *.nupkg $NUGET_API_KEY -verbosity detailed
   on:
     branch: Issue-#11
