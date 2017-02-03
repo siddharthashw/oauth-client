@@ -22,4 +22,4 @@ deploy:
     - pwd
     - cd ./Promact.OAuth.Client/src/Promact.OAuth.Client && nuget pack Promact.OAuth.Client.nuspec -IncludeReferencedProjects -Prop Configuration=Release && nuget push *.nupkg $NUGET_API_KEY -verbosity detailed
   on:
-    branch: Issue-#11
+    branch: Issue-#11 
