@@ -16,7 +16,7 @@
     <tags>Promact-SDK Promact-OAuth</tags>
   </metadata>
   <files>
-    <file src="./Promact.OAuth.Client/src/Promact.OAuth.Client/bin/Debug/net461/Promact.OAuth.Client.dll" target="lib/net461"></file>
-    <file src="./Promact.OAuth.Client/src/Promact.OAuth.Client/bin/Debug/netstandard1.6/Promact.OAuth.Client.dll" target="lib/netstandard1.6"></file>
+    <file src="./net461/Promact.OAuth.Client.dll" target="lib/net461"></file>
+    <file src="./netstandard1.6/Promact.OAuth.Client.dll" target="lib/netstandard1.6"></file>
   </files>
 </package>
