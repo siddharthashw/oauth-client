@@ -19,12 +19,10 @@ notifications:
     on_success: change
     on_failure: always
 script:
-- cd ./Promact.OAuth.Client/src/Promact.OAuth.Client.Test
-- ls
 - dotnet build ./Promact.OAuth.Client/src/Promact.OAuth.Client -c Release
-- dotnet build ./Promact.OAuth.Client/src/Promact.OAuth.Client.Tests -c Release
-- dotnet test ./Promact.OAuth.Client/src/Promact.OAuth.Client.Tests/project.json -c Release 
-- cd ./Promact.OAuth.Client/src/Promact.OAuth.Client && npm install && npm run tslint && npm run test && npm run ci
+- dotnet build ./Promact.OAuth.Client/src/Promact.OAuth.Client.Test -c Release
+- dotnet test ./Promact.OAuth.Client/src/Promact.OAuth.Client.Test/project.json -c Release 
+- cd ./Promact.OAuth.Client/src/Promact.OAuth.Client && npm run ci
 deploy:
   provider: script
   skip_cleanup: true
