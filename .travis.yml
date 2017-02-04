@@ -1,7 +1,8 @@
+version: 1.0.0.{TRAVIS_BUILD_NUMBER}
 language: csharp
 os: linux		
 dist: trusty
-mono: none
+mono: latest
 sudo: required
 dotnet: 1.0.0-preview2-1-003177
 install:
@@ -15,3 +16,11 @@ notifications:
     on_failure: always
 script:
 - dotnet build ./Promact.OAuth.Client/src/Promact.OAuth.Client -c Release
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+    - echo TRAVIS_BUILD_NUMBER
+    - cd ./Promact.OAuth.Client/src/Promact.OAuth.Client && nuget pack Promact.OAuth.Client.nuspec -Version $VERSION -IncludeReferencedProjects -Prop Configuration=Release && nuget push *.nupkg $NUGET_API_KEY -verbosity detailed
+  on:
+    branch: Issue-#11
