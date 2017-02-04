@@ -19,8 +19,8 @@ notifications:
     on_success: change
     on_failure: always
 script:
--cd ./Promact.OAuth.Client/src/Promact.OAuth.Client.Tests
--ls
+  - "cd ./Promact.OAuth.Client/src/Promact.OAuth.Client.Test"
+  - ls
 - dotnet build ./Promact.OAuth.Client/src/Promact.OAuth.Client.Tests -c Release
 deploy:
   provider: script
