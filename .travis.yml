@@ -16,6 +16,9 @@ notifications:
     on_failure: always
 script:
 - dotnet build ./Promact.OAuth.Client/src/Promact.OAuth.Client -c Release
+- echo $TRAVIS_BUILD_NUMBER
+- echo version
+- echo TRAVIS_JOB_ID
 deploy:
   provider: script
   skip_cleanup: true
