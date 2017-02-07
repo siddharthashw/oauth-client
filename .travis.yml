@@ -4,12 +4,7 @@ dist: trusty
 mono: latest
 sudo: required
 dotnet: 1.0.0-preview2-1-003177
-before_install:
-- export CHROME_BIN=chromium-browser
-- export DISPLAY=:99.0
-- if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
 install:
-- npm i -g typescript typings
 - dotnet restore
 before_script:
 - sh -e /etc/init.d/xvfb start
@@ -20,12 +15,12 @@ notifications:
     on_failure: always
 script:
 - dotnet build ./Promact.OAuth.Client/src/Promact.OAuth.Client -c Release
-- cd ./Promact.OAuth.Client/src/Promact.OAuth.Client/bin/Release/netstandard1.6
-- ls
+- dotnet build ./Promact.OAuth.Client/src/Promact.OAuth.Client.Test -c Release
+- dotnet test ./Promact.OAuth.Client/src/Promact.OAuth.Client.Test/project.json -c Release 
 deploy:
   provider: script
   skip_cleanup: true
   script:
     - cd ./Promact.OAuth.Client/src/Promact.OAuth.Client && nuget pack Promact.OAuth.Client.nuspec -Version 1.0.0.$TRAVIS_BUILD_NUMBER -IncludeReferencedProjects -Prop Configuration=Release && nuget push *.nupkg $NUGET_API_KEY -verbosity detailed
   on:
-    branch: Issue-#14
+    branch: master
